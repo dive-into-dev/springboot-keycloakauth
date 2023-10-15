@@ -1,0 +1,176 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "Create Menu Resource",
+      "ownerManagedAccess": false,
+      "displayName": "",
+      "attributes": {},
+      "_id": "723d6299-2f90-41bc-ad76-179ec94c3a5f",
+      "uris": [
+        "/restaurant/menu"
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Create Update Restaurant Resource",
+      "ownerManagedAccess": false,
+      "displayName": "",
+      "attributes": {},
+      "_id": "91816f8a-e658-4aa1-87d3-f4de6b52852d",
+      "uris": [
+        "/restaurant"
+      ],
+      "scopes": [
+        {
+          "name": "POST"
+        },
+        {
+          "name": "PUT"
+        }
+      ],
+      "icon_uri": ""
+    },
+    {
+      "name": "Update Menu Item Resource",
+      "ownerManagedAccess": false,
+      "displayName": "",
+      "attributes": {},
+      "_id": "e2c5f0f1-b248-4096-93e0-8e565a607c1d",
+      "uris": [
+        "/restaurant/menu/item/{itemId}/{price}"
+      ],
+      "scopes": [
+        {
+          "name": "PUT"
+        }
+      ],
+      "icon_uri": ""
+    }
+  ],
+  "policies": [
+    {
+      "id": "1257c287-b891-4262-93a0-f63541c9e067",
+      "name": "Update Restaurant Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"manager\",\"required\":false}]"
+      }
+    },
+    {
+      "id": "8d9bd0db-9c43-408f-b669-a6fecad853b5",
+      "name": "Update Menu Item Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"owner\",\"required\":false}]"
+      }
+    },
+    {
+      "id": "e725593a-0592-4804-bbec-98feae9104fa",
+      "name": "Create Restaurant Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"admin\",\"required\":false}]"
+      }
+    },
+    {
+      "id": "ec82ccd1-c502-4cd1-99a6-22d821590ccf",
+      "name": "Create Menu Policy",
+      "description": "",
+      "type": "role",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "roles": "[{\"id\":\"manager\",\"required\":false}]"
+      }
+    },
+    {
+      "id": "0e8de814-5c0f-4fdd-82fb-2541439c36d5",
+      "name": "Update Restaurant Permission",
+      "description": "",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Create Update Restaurant Resource\"]",
+        "scopes": "[\"PUT\"]",
+        "applyPolicies": "[\"Update Restaurant Policy\"]"
+      }
+    },
+    {
+      "id": "1f8d3c12-151d-4420-b530-2b014f3ece1a",
+      "name": "Create Restaurant Permission",
+      "description": "",
+      "type": "scope",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Create Update Restaurant Resource\"]",
+        "scopes": "[\"POST\"]",
+        "applyPolicies": "[\"Create Restaurant Policy\"]"
+      }
+    },
+    {
+      "id": "40157b1c-b7c0-466f-8942-afb16c1efc6f",
+      "name": "Update Menu Item Permission",
+      "description": "",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Update Menu Item Resource\"]",
+        "applyPolicies": "[\"Update Menu Item Policy\"]"
+      }
+    },
+    {
+      "id": "7628972a-2d0e-49a0-9cbe-efbe95514622",
+      "name": "Create Menu Permission",
+      "description": "",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "resources": "[\"Create Menu Resource\"]",
+        "applyPolicies": "[\"Create Menu Policy\"]"
+      }
+    }
+  ],
+  "scopes": [
+    {
+      "id": "20fd231c-6f83-4972-a3f0-4bc21c41c60e",
+      "name": "GET",
+      "iconUri": ""
+    },
+    {
+      "id": "3b1a61a6-857c-4ece-a57f-83d5853e01f8",
+      "name": "PUT",
+      "iconUri": ""
+    },
+    {
+      "id": "3df50803-ef02-447d-849f-7c012519c27c",
+      "name": "POST",
+      "iconUri": ""
+    },
+    {
+      "id": "6d32a018-964c-40c7-b61b-7b6a7057dd2b",
+      "name": "DELETE",
+      "iconUri": ""
+    },
+    {
+      "id": "b6796770-fea1-40c0-9625-4a7b0ac44a71",
+      "name": "OPTIONS",
+      "iconUri": ""
+    }
+  ],
+  "decisionStrategy": "UNANIMOUS"
+}
