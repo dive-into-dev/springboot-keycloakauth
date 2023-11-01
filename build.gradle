@@ -16,8 +16,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.keycloak:keycloak-servlet-filter-adapter:22.0.3'
-    implementation 'org.keycloak:keycloak-spring-boot-starter:22.0.3'
+    compileOnly 'org.keycloak:keycloak-servlet-filter-adapter:22.0.5'
+    implementation 'org.keycloak:keycloak-spring-boot-starter:22.0.5'
+    implementation 'org.keycloak:keycloak-admin-client:22.0.5'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
