@@ -19,6 +19,20 @@
 	},{
 		"path": "/v3/api-docs/*",
 		"enforcement-mode": "DISABLED"
+	},{
+		"path": "/keycloak/users/{userId}",
+		"enforcement-mode": "ENFORCING",
+		"claim-information-point": {
+			"claims": {
+              "uri_claim": "{request.uri}"
+            }
+		}
+	}, {
+		"path": "/keycloak/*",
+		"enforcement-mode": "ENFORCING"
+	}, {
+		"path": "/restaurant/menu/item/{itemId}/{price}",
+		"enforcement-mode": "ENFORCING"
 	}
 	]
 }

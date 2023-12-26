@@ -1,20 +1,25 @@
 package dive.dev.keycloakclient;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.common.util.CollectionUtil;
 import org.keycloak.representations.idm.CredentialRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dive.dev.dto.Role;
@@ -53,7 +58,7 @@ public class UserResource {
 	public Response createUser(User user) {
 		UserRepresentation userRep = mapUserRep(user);
 		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
-		keycloak.realm(realm).users().create(userRep);
+		Response res = keycloak.realm(realm).users().create(userRep);
 		return Response.ok(user).build();
 	}
 	
@@ -77,6 +82,15 @@ public class UserResource {
 		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
 		return RoleResource.mapRoles(keycloak.realm(realm).users()
 				.get(id).roles().realmLevel().listAll());
+	}
+
+	@PostMapping(value = "/users/{id}/roles/{roleName}")
+	public Response createRole(@PathVariable("id") String id, 
+			@PathVariable("roleName") String roleName) {
+		Keycloak keycloak = keycloakUtil.getKeycloakInstance();
+		RoleRepresentation role = keycloak.realm(realm).roles().get(roleName).toRepresentation();
+		keycloak.realm(realm).users().get(id).roles().realmLevel().add(Arrays.asList(role));
+		return Response.ok().build();
 	}
 
 	private List<User> mapUsers(List<UserRepresentation> userRepresentations) {

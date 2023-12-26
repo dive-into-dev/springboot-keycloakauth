@@ -77,8 +77,8 @@ public class RestaurantController {
 	@PutMapping
 	@RequestMapping("/menu/item/{itemId}/{price}")
 	// owner can access (amar)
-	public MenuItem updateMenuItemPrice(@PathVariable Long itemId
-            , @PathVariable BigDecimal price) {
+	public MenuItem updateMenuItemPrice(@PathVariable("itemId") Long itemId
+            , @PathVariable("price") BigDecimal price) {
         Optional<MenuItem> menuItem = menuItemRepository.findById(itemId);
         menuItem.get().setPrice(price);
         menuItemRepository.save(menuItem.get());

@@ -16,8 +16,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.keycloak:keycloak-servlet-filter-adapter:22.0.5'
-    implementation 'org.keycloak:keycloak-spring-boot-starter:22.0.5'
+	//compileOnly 'org.keycloak:keycloak-servlet-filter-adapter:22.0.5' // Deprecated
+    //implementation 'org.keycloak:keycloak-spring-boot-starter:22.0.5' // Deprecated
+    implementation 'org.keycloak:keycloak-policy-enforcer:22.0.5'
+    implementation 'org.keycloak:keycloak-core:22.0.5'
     implementation 'org.keycloak:keycloak-admin-client:22.0.5'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
