@@ -33,6 +33,12 @@
 	}, {
 		"path": "/restaurant/menu/item/{itemId}/{price}",
 		"enforcement-mode": "ENFORCING"
+	}, {
+		"path": "/restaurant",
+		"enforcement-mode": "ENFORCING"
+	}, {
+		"path": "/restaurant/*",
+		"enforcement-mode": "ENFORCING"
 	}
 	]
 }
